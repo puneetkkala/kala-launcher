@@ -1,0 +1,59 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.kalapuneet.kalalauncher.MainActivity">
+    <EditText
+        android:layout_margin="5dp"
+        android:id="@+id/app_name_search"
+        android:padding="10dp"
+        android:hint="@string/search_apps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_weight="1"
+        android:id="@+id/launcher_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent" />
+    <LinearLayout
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <ImageView
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:id="@+id/contacts_app"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:id="@+id/messenger_app"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:id="@+id/play_store_app"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:id="@+id/media_player_app"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</LinearLayout>
