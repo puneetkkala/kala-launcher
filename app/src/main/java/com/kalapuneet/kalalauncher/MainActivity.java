@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.kalapuneet.kalalauncher.adapter.ApplicationAdapter;
-import com.kalapuneet.kalalauncher.adapter.FrequentAdapter;
 
 import java.util.List;
 import java.util.TreeMap;
@@ -28,9 +27,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     public static final String PHONE = "Phone";
 
     private RecyclerView launcherRv;
-    private RecyclerView frequentRv;
     private ApplicationAdapter applicationAdapter;
-    private FrequentAdapter frequentAdapter;
     private TreeMap<String,ActivityInfo> applicationInfoTree;
     private TreeMap<String,ActivityInfo> displayTree;
     private EditText appNameSearch;
@@ -80,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         setContentView(R.layout.activity_main);
         packageManager = getPackageManager();
         launcherRv = (RecyclerView) findViewById(R.id.launcher_rv);
-        frequentRv = (RecyclerView) findViewById(R.id.frequent_rv);
         appNameSearch = (EditText) findViewById(R.id.app_name_search);
         appNameSearch.addTextChangedListener(this);
         contactsApp = (ImageView) findViewById(R.id.contacts_app);
@@ -141,9 +137,6 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         applicationAdapter = new ApplicationAdapter(this,displayTree,packageManager);
         launcherRv.setAdapter(applicationAdapter);
         launcherRv.setLayoutManager(new GridLayoutManager(this,4));
-        frequentAdapter = new FrequentAdapter(this,displayTree,packageManager);
-        frequentRv.setAdapter(frequentAdapter);
-        frequentRv.setLayoutManager(new GridLayoutManager(this,4));
         contactsApp.setImageDrawable(applicationInfoTree.get(PHONE).loadIcon(packageManager));
         contactsApp.setOnClickListener(new View.OnClickListener() {
             @Override
