@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         mediaPlayerApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(packageManager.getLaunchIntentForPackage(defaultSmsApp().packageName));
+                Intent intent = new Intent(packageManager.getLaunchIntentForPackage(defaultMediaApp().packageName));
                 startActivity(intent);
             }
         });
