@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import com.kalapuneet.kalalauncher.adapter.ApplicationAdapter;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity implements TextWatcher {
@@ -74,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Locale locale = new Locale("hi");
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.setLocale(locale);
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         setContentView(R.layout.activity_main);
         packageManager = getPackageManager();
         launcherRv = (RecyclerView) findViewById(R.id.launcher_rv);

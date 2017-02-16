@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">काला लॉन्चर</string>
+
+    <string name="dummy_button">नकली बटन</string>
+    <string name="dummy_content">नकली विचार</string>
+    <string name="search_apps">ऍप खोजें</string>
+</resources>
