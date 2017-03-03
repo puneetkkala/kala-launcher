@@ -8,6 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,28 +96,11 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         public boolean onLongClick(View view) {
             int position = getPosition();
             if(position > -1 && position < getItemCount()) {
-                final String key = keySet.get(position);
-                final ActivityInfo applicationInfo = applicationInfos.get(key);
-                AlertDialog alertDialog = new AlertDialog.Builder(activity)
-                        .setTitle("Uninstall App")
-                        .setMessage("Are you sure, you want to uninstall " + applicationInfo.loadLabel(pm).toString())
-                        .setPositiveButton("Uninstall", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Uri packageUri = Uri.parse("package:" + applicationInfo.packageName);
-                                Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageUri);
-                                activity.startActivity(uninstallIntent);
-                                dialogInterface.dismiss();
-                            }
-                        })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        }).create();
-                alertDialog.setCancelable(true);
-                alertDialog.show();
+                String key = keySet.get(position);
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package",applicationInfos.get(key).packageName,null);
+                intent.setData(uri);
             }
             return true;
         }
