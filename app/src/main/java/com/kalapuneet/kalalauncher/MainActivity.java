@@ -92,19 +92,21 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-        if(s.toString().length() == 0) {
-            displayTree = new TreeMap<>(applicationInfoTree);
-        } else {
-            displayTree = new TreeMap<>();
-            for (String name: applicationInfoTree.keySet()) {
-                if(name.toLowerCase().startsWith(s.toString().toLowerCase())) {
-                    displayTree.put(name,applicationInfoTree.get(name));
+        if (displayTree != null && applicationInfoTree != null) {
+            if (s.toString().length() == 0) {
+                displayTree = new TreeMap<>(applicationInfoTree);
+            } else {
+                displayTree = new TreeMap<>();
+                for (String name : applicationInfoTree.keySet()) {
+                    if (name.toLowerCase().startsWith(s.toString().toLowerCase())) {
+                        displayTree.put(name, applicationInfoTree.get(name));
+                    }
                 }
             }
+            applicationAdapter = new ApplicationAdapter(this, displayTree, packageManager);
+            launcherRv.setAdapter(applicationAdapter);
+            launcherRv.setLayoutManager(new GridLayoutManager(this, 4));
         }
-        applicationAdapter = new ApplicationAdapter(this,displayTree,packageManager);
-        launcherRv.setAdapter(applicationAdapter);
-        launcherRv.setLayoutManager(new GridLayoutManager(this,4));
     }
 
     @Override

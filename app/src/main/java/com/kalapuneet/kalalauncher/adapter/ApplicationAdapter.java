@@ -101,6 +101,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
                 intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                 Uri uri = Uri.fromParts("package",applicationInfos.get(key).packageName,null);
                 intent.setData(uri);
+                activity.startActivity(intent);
             }
             return true;
         }
