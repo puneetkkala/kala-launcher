@@ -143,7 +143,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         contactsApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(packageManager.getLaunchIntentForPackage(defaultContactsApp().packageName));
+//                Intent intent = new Intent(packageManager.getLaunchIntentForPackage(defaultContactsApp().packageName));
+                Intent intent = new Intent(Intent.ACTION_DIAL);
                 startActivity(intent);
             }
         });
