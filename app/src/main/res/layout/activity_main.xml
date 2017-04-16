@@ -44,14 +44,14 @@
         <ImageView
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:id="@+id/play_store_app"
+            android:id="@+id/google_app"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <ImageView
             android:layout_weight="1"
             android:layout_margin="10dp"
-            android:id="@+id/media_player_app"
+            android:id="@+id/play_store_app"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

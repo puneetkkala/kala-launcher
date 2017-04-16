@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     private ImageView contactsApp;
     private ImageView messengerApp;
     private ImageView playStoreApp;
-    private ImageView mediaPlayerApp;
+    private ImageView googleApp;
     List<ResolveInfo> pkgAppsList;
 
     private void prepareList() {
@@ -50,23 +50,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         displayTree.putAll(applicationInfoTree);
     }
 
-    private ActivityInfo defaultContactsApp() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_APP_CONTACTS);
-        ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent,0);
-        return resolveInfo.activityInfo;
-    }
-
     private ActivityInfo defaultSmsApp() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_APP_MESSAGING);
-        ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent,0);
-        return resolveInfo.activityInfo;
-    }
-
-    private ActivityInfo defaultMediaApp() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_APP_MUSIC);
         ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent,0);
         return resolveInfo.activityInfo;
     }
@@ -81,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         appNameSearch.addTextChangedListener(this);
         contactsApp = (ImageView) findViewById(R.id.contacts_app);
         messengerApp = (ImageView) findViewById(R.id.messenger_app);
+        googleApp = (ImageView) findViewById(R.id.google_app);
         playStoreApp = (ImageView) findViewById(R.id.play_store_app);
-        mediaPlayerApp = (ImageView) findViewById(R.id.media_player_app);
     }
 
     @Override
@@ -143,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         contactsApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(packageManager.getLaunchIntentForPackage(defaultContactsApp().packageName));
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 startActivity(intent);
             }
@@ -156,19 +141,19 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                 startActivity(intent);
             }
         });
+        googleApp.setImageDrawable(applicationInfoTree.get(GOOGLE_APP).loadIcon(packageManager));
+        googleApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(packageManager.getLaunchIntentForPackage(applicationInfoTree.get(GOOGLE_APP).packageName));
+                startActivity(intent);
+            }
+        });
         playStoreApp.setImageDrawable(applicationInfoTree.get(GOOGLE_PLAY_STORE).loadIcon(packageManager));
         playStoreApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(packageManager.getLaunchIntentForPackage(applicationInfoTree.get(GOOGLE_PLAY_STORE).packageName));
-                startActivity(intent);
-            }
-        });
-        mediaPlayerApp.setImageDrawable(defaultMediaApp().loadIcon(packageManager));
-        mediaPlayerApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(packageManager.getLaunchIntentForPackage(defaultMediaApp().packageName));
                 startActivity(intent);
             }
         });
