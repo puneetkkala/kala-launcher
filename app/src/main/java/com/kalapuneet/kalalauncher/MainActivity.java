@@ -4,13 +4,15 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.support.v7.app.AppCompatActivity;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.Surface;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -157,5 +159,19 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            applicationAdapter = new ApplicationAdapter(this, displayTree, packageManager);
+            launcherRv.setAdapter(applicationAdapter);
+            launcherRv.setLayoutManager(new GridLayoutManager(this, 5));
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            applicationAdapter = new ApplicationAdapter(this, displayTree, packageManager);
+            launcherRv.setAdapter(applicationAdapter);
+            launcherRv.setLayoutManager(new GridLayoutManager(this, 4));
+        }
     }
 }
